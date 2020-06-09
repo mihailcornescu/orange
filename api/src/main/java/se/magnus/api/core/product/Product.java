@@ -3,20 +3,20 @@ package se.magnus.api.core.product;
 public class Product {
     private int productId;
     private String name;
-    private int weight;
+    private int amount;
     private String serviceAddress;
 
     public Product() {
         productId = 0;
         name = null;
-        weight = 0;
+        amount = 0;
         serviceAddress = null;
     }
 
-    public Product(int productId, String name, int weight, String serviceAddress) {
+    public Product(int productId, String name, int amount, String serviceAddress) {
         this.productId = productId;
         this.name = name;
-        this.weight = weight;
+        this.amount = amount;
         this.serviceAddress = serviceAddress;
     }
 
@@ -28,8 +28,8 @@ public class Product {
         return name;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getAmount() {
+        return amount;
     }
 
     public String getServiceAddress() {
@@ -44,8 +44,8 @@ public class Product {
         this.name = name;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void setServiceAddress(String serviceAddress) {

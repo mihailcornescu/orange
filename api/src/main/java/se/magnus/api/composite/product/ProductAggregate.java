@@ -1,30 +1,24 @@
 package se.magnus.api.composite.product;
 
-import java.util.List;
-
 public class ProductAggregate {
     private final int productId;
     private final String name;
-    private final int weight;
-    private final ServiceAddresses serviceAddresses;
+    private final int amount;
 
     public ProductAggregate() {
         productId = 0;
         name = null;
-        weight = 0;
-        serviceAddresses = null;
+        amount = 0;
     }
 
     public ProductAggregate(
-        int productId,
-        String name,
-        int weight,
-        ServiceAddresses serviceAddresses) {
+            int productId,
+            String name,
+            int amount) {
 
         this.productId = productId;
         this.name = name;
-        this.weight = weight;
-        this.serviceAddresses = serviceAddresses;
+        this.amount = amount;
     }
 
     public int getProductId() {
@@ -35,11 +29,8 @@ public class ProductAggregate {
         return name;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getAmount() {
+        return amount;
     }
 
-    public ServiceAddresses getServiceAddresses() {
-        return serviceAddresses;
-    }
 }

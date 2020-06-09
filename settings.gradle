@@ -1,4 +1,4 @@
 include ':api'
 include ':util'
-include ':microservices:product-service'
-include ':microservices:product-composite-service'
+include ':microservices:transaction-read-service'
+include ':microservices:transaction-store-service'
