@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 import com.orange.api.model.Transaction;
 
-@Api(description = "REST API for composite product information.")
+@Api(description = "REST API for composite transaction information.")
 public interface TransactionReadService {
 
     /**

@@ -29,7 +29,7 @@ public class PersistenceTests {
         StepVerifier.create(repository.save(entity))
             .expectNextMatches(createdEntity -> {
                 savedEntity = createdEntity;
-                return areProductEqual(entity, savedEntity);
+                return areTransactionsEqual(entity, savedEntity);
             })
             .verifyComplete();
     }
@@ -44,7 +44,7 @@ public class PersistenceTests {
             .verifyComplete();
 
         StepVerifier.create(repository.findById(newEntity.getId()))
-            .expectNextMatches(foundEntity -> areProductEqual(newEntity, foundEntity))
+            .expectNextMatches(foundEntity -> areTransactionsEqual(newEntity, foundEntity))
             .verifyComplete();
 
         StepVerifier.create(repository.count()).expectNext(2l).verifyComplete();
@@ -74,7 +74,7 @@ public class PersistenceTests {
    	public void getByTransactionId() {
 
         StepVerifier.create(repository.findByTransactionId(savedEntity.getTransactionId()))
-            .expectNextMatches(foundEntity -> areProductEqual(savedEntity, foundEntity))
+            .expectNextMatches(foundEntity -> areTransactionsEqual(savedEntity, foundEntity))
             .verifyComplete();
     }
 
@@ -107,7 +107,7 @@ public class PersistenceTests {
             .verifyComplete();
     }
 
-    private boolean areProductEqual(TransactionEntity expectedEntity, TransactionEntity actualEntity) {
+    private boolean areTransactionsEqual(TransactionEntity expectedEntity, TransactionEntity actualEntity) {
         return
             (expectedEntity.getId().equals(actualEntity.getId())) &&
             (expectedEntity.getVersion() == actualEntity.getVersion()) &&

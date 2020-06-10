@@ -114,7 +114,7 @@ public class TransactionStoreServiceApplicationTests {
 		int transactionIdNotFound = 13;
 		getAndVerifyTransaction(transactionIdNotFound, NOT_FOUND)
             .jsonPath("$.path").isEqualTo("/transaction/" + transactionIdNotFound)
-            .jsonPath("$.message").isEqualTo("No product found for transactionId: " + transactionIdNotFound);
+            .jsonPath("$.message").isEqualTo("No transaction found for transactionId: " + transactionIdNotFound);
 	}
 
 	@Test
@@ -131,9 +131,9 @@ public class TransactionStoreServiceApplicationTests {
 		return getAndVerifyTransaction("/" + transactionId, expectedStatus);
 	}
 
-	private WebTestClient.BodyContentSpec getAndVerifyTransaction(String productIdPath, HttpStatus expectedStatus) {
+	private WebTestClient.BodyContentSpec getAndVerifyTransaction(String transactionIdPath, HttpStatus expectedStatus) {
 		return client.get()
-			.uri("/transaction" + productIdPath)
+			.uri("/transaction" + transactionIdPath)
 			.accept(APPLICATION_JSON)
 			.exchange()
 			.expectStatus().isEqualTo(expectedStatus)
@@ -141,14 +141,14 @@ public class TransactionStoreServiceApplicationTests {
 			.expectBody();
 	}
 
-	private void sendCreateTransactionEvent(int productId) {
-		Transaction transaction = new Transaction(productId, "Name " + productId, productId);
-		Event<Integer, Transaction> event = new Event(CREATE, productId, transaction);
+	private void sendCreateTransactionEvent(int transactionId) {
+		Transaction transaction = new Transaction(transactionId, "Name " + transactionId, transactionId);
+		Event<Integer, Transaction> event = new Event(CREATE, transactionId, transaction);
 		input.send(new GenericMessage<>(event));
 	}
 
-	private void sendDeleteTransactionEvent(int productId) {
-		Event<Integer, Transaction> event = new Event(DELETE, productId, null);
+	private void sendDeleteTransactionEvent(int transactionId) {
+		Event<Integer, Transaction> event = new Event(DELETE, transactionId, null);
 		input.send(new GenericMessage<>(event));
 	}
 }

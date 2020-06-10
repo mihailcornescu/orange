@@ -9,15 +9,15 @@ public interface TransactionStoreService {
     Transaction createTransaction(@RequestBody Transaction body);
 
     /**
-     * Sample usage: curl $HOST:$PORT/product/1
+     * Sample usage: curl $HOST:$PORT/transaction/1
      *
      * @param transactionId
-     * @return the product, if found, else null
+     * @return the transaction, if found, else null
      */
     @GetMapping(
         value    = "/transaction/{transactionId}",
         produces = "application/json")
      Mono<Transaction> getTransaction(@PathVariable int transactionId);
 
-    void deleteTransaction(@PathVariable int productId);
+    void deleteTransaction(@PathVariable int transactionId);
 }

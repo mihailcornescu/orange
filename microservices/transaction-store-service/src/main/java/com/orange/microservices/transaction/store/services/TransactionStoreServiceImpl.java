@@ -37,7 +37,7 @@ public class TransactionStoreServiceImpl implements TransactionStoreService {
     @Override
     public Transaction createTransaction(Transaction body) {
 
-        if (body.getTransactionId() < 1) throw new InvalidInputException("Invalid productId: " + body.getTransactionId());
+        if (body.getTransactionId() < 1) throw new InvalidInputException("Invalid transactionId: " + body.getTransactionId());
 
         TransactionEntity entity = mapper.apiToEntity(body);
         Mono<Transaction> newEntity = repository.save(entity)
@@ -56,17 +56,17 @@ public class TransactionStoreServiceImpl implements TransactionStoreService {
         if (transactionId < 1) throw new InvalidInputException("Invalid transactionId: " + transactionId);
 
         return repository.findByTransactionId(transactionId)
-            .switchIfEmpty(error(new NotFoundException("No product found for transactionId: " + transactionId)))
+            .switchIfEmpty(error(new NotFoundException("No transaction found for transactionId: " + transactionId)))
             .log()
             .map(e -> mapper.entityToApi(e));
     }
 
     @Override
-    public void deleteTransaction(int productId) {
+    public void deleteTransaction(int transactionId) {
 
-        if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
+        if (transactionId < 1) throw new InvalidInputException("Invalid transactionId: " + transactionId);
 
-        LOG.debug("deleteTransaction: tries to delete an entity with productId: {}", productId);
-        repository.findByTransactionId(productId).log().map(e -> repository.delete(e)).flatMap(e -> e).block();
+        LOG.debug("deleteTransaction: tries to delete an entity with transactionId: {}", transactionId);
+        repository.findByTransactionId(transactionId).log().map(e -> repository.delete(e)).flatMap(e -> e).block();
     }
 }

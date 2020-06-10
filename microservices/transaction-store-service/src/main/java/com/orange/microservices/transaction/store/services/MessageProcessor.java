@@ -37,9 +37,9 @@ public class MessageProcessor {
             break;
 
         case DELETE:
-            int productId = event.getKey();
-            LOG.info("Delete recommendations with ProductID: {}", productId);
-            transactionStoreService.deleteTransaction(productId);
+            int transactionId = event.getKey();
+            LOG.info("Delete recommendations with TransactionID: {}", transactionId);
+            transactionStoreService.deleteTransaction(transactionId);
             break;
 
         default:

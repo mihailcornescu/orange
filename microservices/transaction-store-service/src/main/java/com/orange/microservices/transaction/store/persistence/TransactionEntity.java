@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import static java.lang.String.format;
 
-@Document(collection="products")
+@Document(collection="transactions")
 public class TransactionEntity {
 
     @Id

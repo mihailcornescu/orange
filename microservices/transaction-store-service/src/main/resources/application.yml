@@ -3,14 +3,14 @@ server.port: 7001
 spring.data.mongodb:
   host: localhost
   port: 27017
-  database: product-db
+  database: transaction-db
 
 spring.cloud.stream:
   defaultBinder: rabbit
   default.contentType: application/json
   bindings.input:
-    destination: products
-    group: productsGroup
+    destination: transactions
+    group: transactionsGroup
 
 spring.cloud.stream.bindings.input.consumer:
   maxAttempts: 3

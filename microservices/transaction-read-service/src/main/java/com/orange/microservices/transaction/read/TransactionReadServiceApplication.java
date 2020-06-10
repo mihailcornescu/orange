@@ -27,7 +27,7 @@ public class TransactionReadServiceApplication {
 
 		ReactiveHealthIndicatorRegistry registry = new DefaultReactiveHealthIndicatorRegistry(new LinkedHashMap<>());
 
-		registry.register("product", () -> integration.getProductHealth());
+		registry.register("transaction-store", () -> integration.getTransactionStoreHealth());
 
 		return new CompositeReactiveHealthIndicator(healthAggregator, registry);
 	}

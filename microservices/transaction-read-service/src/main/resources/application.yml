@@ -1,7 +1,7 @@
 server.port: 7000
 
 app:
-  product-service:
+  transaction-store-service:
     host: localhost
     port: 7001
 
@@ -9,8 +9,8 @@ spring.cloud.stream:
   defaultBinder: rabbit
   default.contentType: application/json
   bindings:
-    output-products:
-      destination: products
+    output-transactions:
+      destination: transactions
       producer:
         required-groups: auditGroup
 
@@ -37,8 +37,8 @@ spring.profiles: docker
 server.port: 8080
 
 app:
-  product-service:
-    host: product
+  transaction-store-service:
+    host: transaction-store
     port: 8080
 
 spring.rabbitmq.host: rabbitmq

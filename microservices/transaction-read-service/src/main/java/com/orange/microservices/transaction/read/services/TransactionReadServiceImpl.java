@@ -27,11 +27,11 @@ public class TransactionReadServiceImpl implements TransactionReadService {
 
         try {
 
-            LOG.debug("createTransaction: creates a new composite entity for productId: {}", body.getTransactionId());
+            LOG.debug("createTransaction: creates a new composite entity for transactionId: {}", body.getTransactionId());
 
             integration.createTransaction(body);
 
-            LOG.debug("createTransaction: composite entities created for productId: {}", body.getTransactionId());
+            LOG.debug("createTransaction: composite entities created for transactionId: {}", body.getTransactionId());
 
         } catch (RuntimeException re) {
             LOG.warn("createTransaction failed: {}", re.toString());
