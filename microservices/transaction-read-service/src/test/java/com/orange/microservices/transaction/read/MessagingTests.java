@@ -41,45 +41,45 @@ public class MessagingTests {
 	@Autowired
 	private MessageCollector collector;
 
-	BlockingQueue<Message<?>> queueProducts = null;
+	BlockingQueue<Message<?>> queueTransactions = null;
 
 	@Before
 	public void setUp() {
-		queueProducts = getQueue(channels.outputProducts());
+		queueTransactions = getQueue(channels.outputTransactions());
 	}
 
 	@Test
-	public void createCompositeProduct1() {
+	public void createTransaction1() {
 
 		Transaction composite = new Transaction(1, "name", 1);
-		postAndVerifyProduct(composite, OK);
+		postAndVerifyTransaction(composite, OK);
 
-		// Assert one expected new product events queued up
-		assertEquals(1, queueProducts.size());
+		// Assert one expected new transaction events queued up
+		assertEquals(1, queueTransactions.size());
 
 		Event<Integer, Transaction> expectedEvent = new Event(CREATE, composite.getTransactionId(), new Transaction(composite.getTransactionId(), composite.getName(), composite.getAmount()));
-		assertThat(queueProducts, Matchers.is(receivesPayloadThat(IsSameEvent.sameEventExceptCreatedAt(expectedEvent))));
+		assertThat(queueTransactions, Matchers.is(receivesPayloadThat(IsSameEvent.sameEventExceptCreatedAt(expectedEvent))));
 	}
 
 	@Test
-	public void createCompositeProduct2() {
+	public void createTransaction2() {
 
 		Transaction transaction = new Transaction(1, "name", 1);
 
-		postAndVerifyProduct(transaction, OK);
+		postAndVerifyTransaction(transaction, OK);
 
 		// Assert one create transaction event queued up
-		assertEquals(1, queueProducts.size());
+		assertEquals(1, queueTransactions.size());
 
-		Event<Integer, Transaction> expectedProductEvent = new Event(CREATE, transaction.getTransactionId(), new Transaction(transaction.getTransactionId(), transaction.getName(), transaction.getAmount()));
-		assertThat(queueProducts, receivesPayloadThat(IsSameEvent.sameEventExceptCreatedAt(expectedProductEvent)));
+		Event<Integer, Transaction> expectedTransactionEvent = new Event(CREATE, transaction.getTransactionId(), new Transaction(transaction.getTransactionId(), transaction.getName(), transaction.getAmount()));
+		assertThat(queueTransactions, receivesPayloadThat(IsSameEvent.sameEventExceptCreatedAt(expectedTransactionEvent)));
 	}
 
 	private BlockingQueue<Message<?>> getQueue(MessageChannel messageChannel) {
 		return collector.forChannel(messageChannel);
 	}
 
-	private void postAndVerifyProduct(Transaction transaction, HttpStatus expectedStatus) {
+	private void postAndVerifyTransaction(Transaction transaction, HttpStatus expectedStatus) {
 		client.post()
 			.uri("/create-transaction")
 			.body(just(transaction), Transaction.class)

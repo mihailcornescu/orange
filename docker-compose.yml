@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  product:
+  transaction-store:
     build: microservices/transaction-store-service
     mem_limit: 350m
     environment:
@@ -15,7 +15,7 @@ services:
       - kafka
       - mongodb
 
-  product-p1:
+  transaction-store-p1:
     build: microservices/transaction-store-service
     mem_limit: 350m
     environment:
@@ -29,7 +29,7 @@ services:
       - kafka
       - mongodb
 
-  product-composite:
+  transaction-read:
     build: microservices/transaction-read-service
     mem_limit: 350m
     ports:

@@ -44,7 +44,7 @@ public class TransactionStoreCompositeIntegration implements TransactionStoreSer
         String OUTPUT_PRODUCTS = "output-products";
 
         @Output(OUTPUT_PRODUCTS)
-        MessageChannel outputProducts();
+        MessageChannel outputTransactions();
 
     }
 
@@ -67,7 +67,7 @@ public class TransactionStoreCompositeIntegration implements TransactionStoreSer
 
     @Override
     public Transaction createTransaction(Transaction body) {
-        messageSources.outputProducts().send(MessageBuilder.withPayload(new Event(CREATE, body.getTransactionId(), body)).build());
+        messageSources.outputTransactions().send(MessageBuilder.withPayload(new Event(CREATE, body.getTransactionId(), body)).build());
         return body;
     }
 
@@ -81,7 +81,7 @@ public class TransactionStoreCompositeIntegration implements TransactionStoreSer
 
     @Override
     public void deleteTransaction(int productId) {
-        messageSources.outputProducts().send(MessageBuilder.withPayload(new Event(DELETE, productId, null)).build());
+        messageSources.outputTransactions().send(MessageBuilder.withPayload(new Event(DELETE, productId, null)).build());
     }
 
     public Mono<Health> getProductHealth() {
