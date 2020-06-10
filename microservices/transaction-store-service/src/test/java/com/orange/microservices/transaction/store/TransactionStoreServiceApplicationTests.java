@@ -142,7 +142,7 @@ public class TransactionStoreServiceApplicationTests {
 	}
 
 	private void sendCreateTransactionEvent(int transactionId) {
-		Transaction transaction = new Transaction(transactionId, "Name " + transactionId, transactionId);
+		Transaction transaction = new Transaction(transactionId, "Type " + transactionId, "Iban " + transactionId, "Cnp " + transactionId, "Name " + transactionId, "Desc " + transactionId, transactionId);
 		Event<Integer, Transaction> event = new Event(CREATE, transactionId, transaction);
 		input.send(new GenericMessage<>(event));
 	}

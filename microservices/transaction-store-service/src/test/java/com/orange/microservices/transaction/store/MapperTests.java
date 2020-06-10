@@ -17,7 +17,7 @@ public class MapperTests {
 
         assertNotNull(mapper);
 
-        Transaction api = new Transaction(1, "n", 1);
+        Transaction api = new Transaction(1, "t", "i", "c", "n", "d", 1);
 
         TransactionEntity entity = mapper.apiToEntity(api);
 

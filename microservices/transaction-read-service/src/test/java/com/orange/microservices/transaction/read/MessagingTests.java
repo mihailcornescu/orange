@@ -51,27 +51,27 @@ public class MessagingTests {
 	@Test
 	public void createTransaction1() {
 
-		Transaction composite = new Transaction(1, "name", 1);
-		postAndVerifyTransaction(composite, OK);
+		Transaction transaction = new Transaction(1, "type", "iban", "cnp", "name", "desc", 1);
+		postAndVerifyTransaction(transaction, OK);
 
 		// Assert one expected new transaction events queued up
 		assertEquals(1, queueTransactions.size());
 
-		Event<Integer, Transaction> expectedEvent = new Event(CREATE, composite.getTransactionId(), new Transaction(composite.getTransactionId(), composite.getName(), composite.getAmount()));
+		Event<Integer, Transaction> expectedEvent = new Event(CREATE, transaction.getTransactionId(), new Transaction(transaction.getTransactionId(), transaction.getType(), transaction.getIban(), transaction.getCnp(), transaction.getName(), transaction.getDescription(), transaction.getAmount()));
 		assertThat(queueTransactions, Matchers.is(receivesPayloadThat(IsSameEvent.sameEventExceptCreatedAt(expectedEvent))));
 	}
 
 	@Test
 	public void createTransaction2() {
 
-		Transaction transaction = new Transaction(1, "name", 1);
+		Transaction transaction = new Transaction(1, "type", "iban", "cnp", "name", "desc", 1);
 
 		postAndVerifyTransaction(transaction, OK);
 
 		// Assert one create transaction event queued up
 		assertEquals(1, queueTransactions.size());
 
-		Event<Integer, Transaction> expectedTransactionEvent = new Event(CREATE, transaction.getTransactionId(), new Transaction(transaction.getTransactionId(), transaction.getName(), transaction.getAmount()));
+		Event<Integer, Transaction> expectedTransactionEvent = new Event(CREATE, transaction.getTransactionId(), new Transaction(transaction.getTransactionId(), transaction.getType(), transaction.getIban(), transaction.getCnp(), transaction.getName(), transaction.getDescription(), transaction.getAmount()));
 		assertThat(queueTransactions, receivesPayloadThat(IsSameEvent.sameEventExceptCreatedAt(expectedTransactionEvent)));
 	}
 

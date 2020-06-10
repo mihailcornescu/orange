@@ -23,10 +23,10 @@ public class IsSameEventTests {
 
     	// Event #1 and #2 are the same event, but occurs as different times
 		// Event #3 and #4 are different events
-		Event<Integer, Transaction> event1 = new Event<>(CREATE, 1, new Transaction(1, "name", 1));
-		Event<Integer, Transaction> event2 = new Event<>(CREATE, 1, new Transaction(1, "name", 1));
+		Event<Integer, Transaction> event1 = new Event<>(CREATE, 1, new Transaction(1, "type", "iban", "cnp", "name", "desc", 1));
+		Event<Integer, Transaction> event2 = new Event<>(CREATE, 1, new Transaction(1, "type", "iban", "cnp", "name", "desc", 1));
 		Event<Integer, Transaction> event3 = new Event<>(DELETE, 1, null);
-		Event<Integer, Transaction> event4 = new Event<>(CREATE, 1, new Transaction(2, "name", 1));
+		Event<Integer, Transaction> event4 = new Event<>(CREATE, 1, new Transaction(2, "type", "iban", "cnp", "name", "desc", 1));
 
 		String event1JSon = mapper.writeValueAsString(event1);
 
