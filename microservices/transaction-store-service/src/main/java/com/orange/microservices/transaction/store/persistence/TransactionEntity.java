@@ -1,5 +1,6 @@
 package com.orange.microservices.transaction.store.persistence;
 
+import com.orange.api.model.TransactionType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -19,7 +20,7 @@ public class TransactionEntity {
     @Indexed(unique = true)
     private int transactionId;
 
-    private String type;
+    private TransactionType type;
     private String iban;
     private String cnp;
     private String name;
@@ -35,7 +36,7 @@ public class TransactionEntity {
         this.amount = amount;
     }
 
-    public TransactionEntity(String id, String type, String iban, String cnp, String name, String description, int amount) {
+    public TransactionEntity(String id, TransactionType type, String iban, String cnp, String name, String description, int amount) {
         this.id = id;
         this.type = type;
         this.iban = iban;
@@ -74,11 +75,11 @@ public class TransactionEntity {
         this.transactionId = transactionId;
     }
 
-    public String getType() {
+    public TransactionType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(TransactionType type) {
         this.type = type;
     }
 

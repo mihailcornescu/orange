@@ -2,7 +2,7 @@ package com.orange.api.model;
 
 public class Transaction {
     private int transactionId;
-    private String type;
+    private TransactionType type;
     private String iban;
     private String cnp;
     private String name;
@@ -19,7 +19,7 @@ public class Transaction {
         amount = 0;
     }
 
-    public Transaction(int transactionId, String type, String iban, String cnp, String name, String description, int amount) {
+    public Transaction(int transactionId, TransactionType type, String iban, String cnp, String name, String description, int amount) {
         this.transactionId = transactionId;
         this.type = type;
         this.iban = iban;
@@ -37,11 +37,11 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public String getType() {
+    public TransactionType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(TransactionType type) {
         this.type = type;
     }
 

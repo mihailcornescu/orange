@@ -13,7 +13,7 @@ public interface TransactionReadService {
      * Sample usage:
      *
      * curl -X POST $HOST:$PORT/create-transaction \
-     *   -H "Content-Type: application/json" --data \
+     *   -H "Content-TransactionType: application/json" --data \
      *   '{"transactionId":123,"name":"ion popescu","amount":123}'
      *
      * @param body

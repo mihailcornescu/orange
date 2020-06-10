@@ -1,5 +1,6 @@
 package com.orange.microservices.transaction.store;
 
+import com.orange.api.model.TransactionType;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -142,7 +143,7 @@ public class TransactionStoreServiceApplicationTests {
 	}
 
 	private void sendCreateTransactionEvent(int transactionId) {
-		Transaction transaction = new Transaction(transactionId, "Type " + transactionId, "Iban " + transactionId, "Cnp " + transactionId, "Name " + transactionId, "Desc " + transactionId, transactionId);
+		Transaction transaction = new Transaction(transactionId, TransactionType.IBAN_TO_IBAN, "Iban " + transactionId, "Cnp " + transactionId, "Name " + transactionId, "Desc " + transactionId, transactionId);
 		Event<Integer, Transaction> event = new Event(CREATE, transactionId, transaction);
 		input.send(new GenericMessage<>(event));
 	}

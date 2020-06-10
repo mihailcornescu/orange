@@ -1,5 +1,6 @@
 package com.orange.microservices.transaction.store;
 
+import com.orange.api.model.TransactionType;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
 import com.orange.api.model.Transaction;
@@ -17,7 +18,7 @@ public class MapperTests {
 
         assertNotNull(mapper);
 
-        Transaction api = new Transaction(1, "t", "i", "c", "n", "d", 1);
+        Transaction api = new Transaction(1, TransactionType.IBAN_TO_IBAN, "i", "c", "n", "d", 1);
 
         TransactionEntity entity = mapper.apiToEntity(api);
 
