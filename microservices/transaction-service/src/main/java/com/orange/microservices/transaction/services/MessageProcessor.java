@@ -1,26 +1,26 @@
-package com.orange.microservices.transaction.store.services;
+package com.orange.microservices.transaction.services;
 
+import com.orange.api.model.Transaction;
+import com.orange.api.service.TransactionStoreService;
+import com.orange.util.exceptions.EventProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
-import com.orange.api.model.Transaction;
-import com.orange.api.service.TransactionStoreService;
-import com.orange.api.event.Event;
-import com.orange.util.exceptions.EventProcessingException;
+import se.magnus.api.event.Event;
 
 @EnableBinding(Sink.class)
 public class MessageProcessor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MessageProcessor.class);
 
-    private final TransactionStoreService transactionStoreService;
+    private final TransactionStoreService service;
 
     @Autowired
-    public MessageProcessor(TransactionStoreService transactionStoreService) {
-        this.transactionStoreService = transactionStoreService;
+    public MessageProcessor(TransactionStoreService service) {
+        this.service = service;
     }
 
     @StreamListener(target = Sink.INPUT)
@@ -33,13 +33,7 @@ public class MessageProcessor {
         case CREATE:
             Transaction transaction = event.getData();
             LOG.info("Create transaction with ID: {}", transaction.getTransactionId());
-            transactionStoreService.createTransaction(transaction);
-            break;
-
-        case DELETE:
-            int transactionId = event.getKey();
-            LOG.info("Delete recommendations with TransactionID: {}", transactionId);
-            transactionStoreService.deleteTransaction(transactionId);
+            service.createTransaction(transaction);
             break;
 
         default:

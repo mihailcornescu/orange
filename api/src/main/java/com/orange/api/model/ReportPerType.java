@@ -1,5 +1,6 @@
 package com.orange.api.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReportPerType {
@@ -8,6 +9,13 @@ public class ReportPerType {
     private int totalNumber;
     private int totalSum;
     List<Transaction> transactions;
+
+    public ReportPerType() {
+        type = null;
+        totalNumber = 0;
+        totalSum = 0;
+        transactions = new ArrayList<>();
+    }
 
     public TransactionType getType() {
         return type;

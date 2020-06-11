@@ -15,10 +15,10 @@ public class ReportFull {
         name = null;
         cnp = null;
         iban = null;
-        ibanToIban = null;
-        ibanToWallet = null;
-        walletToIban = null;
-        walletToWallet = null;
+        ibanToIban = new ReportPerType();
+        ibanToWallet = new ReportPerType();
+        walletToIban = new ReportPerType();
+        walletToWallet = new ReportPerType();
     }
 
     public ReportFull(String name, String cnp, String iban, ReportPerType ibanToIban, ReportPerType ibanToWallet, ReportPerType walletToIban, ReportPerType walletToWallet) {

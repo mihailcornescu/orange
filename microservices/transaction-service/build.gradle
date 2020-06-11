@@ -40,6 +40,7 @@ dependencies {
 	implementation("org.mapstruct:mapstruct:${mapstructVersion}")
 
 	compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	compileOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
