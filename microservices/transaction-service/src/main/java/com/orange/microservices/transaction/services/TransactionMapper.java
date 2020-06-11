@@ -1,14 +1,16 @@
-package com.orange.microservices.transaction.store.services;
+package com.orange.microservices.transaction.services;
 
-import com.orange.microservices.transaction.store.persistence.TransactionEntity;
+import com.orange.api.model.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import com.orange.api.model.Transaction;
+import com.orange.microservices.transaction.persistence.TransactionEntity;
 
 @Mapper(componentModel = "spring")
 public interface TransactionMapper {
 
+    @Mappings({
+    })
     Transaction entityToApi(TransactionEntity entity);
 
     @Mappings({

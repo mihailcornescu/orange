@@ -1,7 +1,7 @@
 server.port: 7000
 
 app:
-  transaction-store-service:
+  transaction-service:
     host: localhost
     port: 7001
 
@@ -37,8 +37,8 @@ spring.profiles: docker
 server.port: 8080
 
 app:
-  transaction-store-service:
-    host: transaction-store
+  transaction-service:
+    host: transaction
     port: 8080
 
 spring.rabbitmq.host: rabbitmq

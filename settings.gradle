@@ -1,4 +1,4 @@
 include ':api'
 include ':util'
 include ':microservices:transaction-read-service'
-include ':microservices:transaction-store-service'
+include ':microservices:transaction-service'

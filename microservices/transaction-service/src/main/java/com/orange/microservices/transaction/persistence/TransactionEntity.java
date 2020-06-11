@@ -1,4 +1,4 @@
-package com.orange.microservices.transaction.store.persistence;
+package com.orange.microservices.transaction.persistence;
 
 import com.orange.api.model.TransactionType;
 import org.springframework.data.annotation.Id;
@@ -30,14 +30,8 @@ public class TransactionEntity {
     public TransactionEntity() {
     }
 
-    public TransactionEntity(int transactionId, String name, int amount) {
+    public TransactionEntity(int transactionId, TransactionType type, String iban, String cnp, String name, String description, int amount) {
         this.transactionId = transactionId;
-        this.name = name;
-        this.amount = amount;
-    }
-
-    public TransactionEntity(String id, TransactionType type, String iban, String cnp, String name, String description, int amount) {
-        this.id = id;
         this.type = type;
         this.iban = iban;
         this.cnp = cnp;

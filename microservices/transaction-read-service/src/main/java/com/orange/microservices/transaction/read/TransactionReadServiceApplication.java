@@ -1,6 +1,6 @@
 package com.orange.microservices.transaction.read;
 
-import com.orange.microservices.transaction.read.services.TransactionStoreCompositeIntegration;
+import com.orange.microservices.transaction.read.services.TransactionReadCompositeIntegration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.health.*;
@@ -20,14 +20,14 @@ public class TransactionReadServiceApplication {
 	HealthAggregator healthAggregator;
 
 	@Autowired
-    TransactionStoreCompositeIntegration integration;
+    TransactionReadCompositeIntegration integration;
 
 	@Bean
 	ReactiveHealthIndicator coreServices() {
 
 		ReactiveHealthIndicatorRegistry registry = new DefaultReactiveHealthIndicatorRegistry(new LinkedHashMap<>());
 
-		registry.register("transaction-store", () -> integration.getTransactionStoreHealth());
+		registry.register("transaction", () -> integration.getTransactionStoreHealth());
 
 		return new CompositeReactiveHealthIndicator(healthAggregator, registry);
 	}

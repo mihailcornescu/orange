@@ -6,7 +6,9 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 import com.orange.api.model.Transaction;
 
-@Api(description = "REST API for composite transaction information.")
+import javax.validation.Valid;
+
+@Api(description = "REST API for transaction creation.")
 public interface TransactionReadService {
 
     /**
@@ -25,6 +27,6 @@ public interface TransactionReadService {
     @PostMapping(
         value    = "/create-transaction",
         consumes = "application/json")
-    void createTransaction(@RequestBody Transaction body);
+    void createTransaction(@Valid @RequestBody Transaction body);
 
 }

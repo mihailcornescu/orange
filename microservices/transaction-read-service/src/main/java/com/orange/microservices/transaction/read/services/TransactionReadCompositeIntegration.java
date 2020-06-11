@@ -24,13 +24,12 @@ import com.orange.util.http.HttpErrorInfo;
 import java.io.IOException;
 
 import static com.orange.api.event.Event.Type.CREATE;
-import static com.orange.api.event.Event.Type.DELETE;
 
-@EnableBinding(TransactionStoreCompositeIntegration.MessageSources.class)
+@EnableBinding(TransactionReadCompositeIntegration.MessageSources.class)
 @Component
-public class TransactionStoreCompositeIntegration implements TransactionStoreService {
+public class TransactionReadCompositeIntegration implements TransactionStoreService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TransactionStoreCompositeIntegration.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TransactionReadCompositeIntegration.class);
 
     private final WebClient webClient;
     private final ObjectMapper mapper;
@@ -49,13 +48,13 @@ public class TransactionStoreCompositeIntegration implements TransactionStoreSer
     }
 
     @Autowired
-    public TransactionStoreCompositeIntegration(
+    public TransactionReadCompositeIntegration(
         WebClient.Builder webClient,
         ObjectMapper mapper,
         MessageSources messageSources,
 
-        @Value("${app.transaction-store-service.host}") String transactionStoreServiceHost,
-        @Value("${app.transaction-store-service.port}") int    transactionStoreServicePort
+        @Value("${app.transaction-service.host}") String transactionStoreServiceHost,
+        @Value("${app.transaction-service.port}") int    transactionStoreServicePort
     ) {
 
         this.webClient = webClient.build();
@@ -73,15 +72,7 @@ public class TransactionStoreCompositeIntegration implements TransactionStoreSer
 
     @Override
     public Mono<Transaction> getTransaction(int transactionId) {
-        String url = transactionStoreServiceUrl + "/transaction/" + transactionId;
-        LOG.debug("Will call the getTransaction API on URL: {}", url);
-
-        return webClient.get().uri(url).retrieve().bodyToMono(Transaction.class).log().onErrorMap(WebClientResponseException.class, ex -> handleException(ex));
-    }
-
-    @Override
-    public void deleteTransaction(int transactionId) {
-        messageSources.outputTransactions().send(MessageBuilder.withPayload(new Event(DELETE, transactionId, null)).build());
+        return null;
     }
 
     public Mono<Health> getTransactionStoreHealth() {

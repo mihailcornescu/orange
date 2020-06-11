@@ -1,4 +1,4 @@
-package com.orange.microservices.transaction.store;
+package com.orange.microservices.transaction;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,13 +9,13 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("com.orange")
-public class TransactionStoreServiceApplication {
+public class TransactionServiceApplication {
 
-	private static final Logger LOG = LoggerFactory.getLogger(TransactionStoreServiceApplication.class);
+	private static final Logger LOG = LoggerFactory.getLogger(TransactionServiceApplication.class);
 
 	public static void main(String[] args) {
 
-		ConfigurableApplicationContext ctx = SpringApplication.run(TransactionStoreServiceApplication.class, args);
+		ConfigurableApplicationContext ctx = SpringApplication.run(TransactionServiceApplication.class, args);
 
 		String mongodDbHost = ctx.getEnvironment().getProperty("spring.data.mongodb.host");
 		String mongodDbPort = ctx.getEnvironment().getProperty("spring.data.mongodb.port");

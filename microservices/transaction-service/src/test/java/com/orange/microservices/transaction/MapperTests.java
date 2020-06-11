@@ -1,11 +1,11 @@
-package com.orange.microservices.transaction.store;
+package com.orange.microservices.transaction;
 
+import com.orange.api.model.Transaction;
 import com.orange.api.model.TransactionType;
+import com.orange.microservices.transaction.persistence.TransactionEntity;
+import com.orange.microservices.transaction.services.TransactionMapper;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
-import com.orange.api.model.Transaction;
-import com.orange.microservices.transaction.store.persistence.TransactionEntity;
-import com.orange.microservices.transaction.store.services.TransactionMapper;
 
 import static org.junit.Assert.*;
 

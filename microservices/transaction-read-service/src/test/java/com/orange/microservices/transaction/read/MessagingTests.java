@@ -1,5 +1,6 @@
 package com.orange.microservices.transaction.read;
 
+import com.orange.api.model.TransactionType;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import com.orange.api.model.Transaction;
 import com.orange.api.event.Event;
-import com.orange.microservices.transaction.read.services.TransactionStoreCompositeIntegration;
+import com.orange.microservices.transaction.read.services.TransactionReadCompositeIntegration;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -36,7 +37,7 @@ public class MessagingTests {
     private WebTestClient client;
 
 	@Autowired
-	private TransactionStoreCompositeIntegration.MessageSources channels;
+	private TransactionReadCompositeIntegration.MessageSources channels;
 
 	@Autowired
 	private MessageCollector collector;
@@ -51,7 +52,7 @@ public class MessagingTests {
 	@Test
 	public void createTransaction1() {
 
-		Transaction transaction = new Transaction(1, "type", "iban", "cnp", "name", "desc", 1);
+		Transaction transaction = new Transaction(1, TransactionType.IBAN_TO_IBAN, "iban", "cnp", "name", "desc", 1);
 		postAndVerifyTransaction(transaction, OK);
 
 		// Assert one expected new transaction events queued up
@@ -64,7 +65,7 @@ public class MessagingTests {
 	@Test
 	public void createTransaction2() {
 
-		Transaction transaction = new Transaction(1, "type", "iban", "cnp", "name", "desc", 1);
+		Transaction transaction = new Transaction(1, TransactionType.IBAN_TO_IBAN, "iban", "cnp", "name", "desc", 1);
 
 		postAndVerifyTransaction(transaction, OK);
 
