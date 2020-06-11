@@ -1,11 +1,11 @@
 package com.orange.microservices.transaction.read.services;
 
+import com.orange.api.model.Transaction;
+import com.orange.api.service.TransactionReadService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import com.orange.api.model.Transaction;
-import com.orange.api.service.TransactionReadService;
 
 @RestController
 public class TransactionReadServiceImpl implements TransactionReadService {

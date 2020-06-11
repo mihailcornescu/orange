@@ -3,6 +3,7 @@ package com.orange.microservices.transaction;
 import com.orange.api.event.Event;
 import com.orange.api.model.Transaction;
 import com.orange.api.model.TransactionType;
+import com.orange.microservices.transaction.persistence.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +14,6 @@ import org.springframework.integration.channel.AbstractMessageChannel;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import com.orange.microservices.transaction.persistence.TransactionRepository;
 
 import static org.junit.Assert.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;

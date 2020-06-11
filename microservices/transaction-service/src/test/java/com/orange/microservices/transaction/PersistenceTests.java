@@ -1,6 +1,7 @@
 package com.orange.microservices.transaction;
 
 import com.orange.api.model.TransactionType;
+import com.orange.microservices.transaction.persistence.TransactionEntity;
 import com.orange.microservices.transaction.persistence.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.test.StepVerifier;
-import com.orange.microservices.transaction.persistence.TransactionEntity;
 
 @RunWith(SpringRunner.class)
 @DataMongoTest

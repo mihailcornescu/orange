@@ -1,7 +1,6 @@
 package com.orange.api.service;
 
 import com.orange.api.model.ReportFull;
-import com.orange.api.model.Transaction;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import reactor.core.publisher.Mono;

@@ -5,7 +5,6 @@ import com.orange.api.model.ReportPerType;
 import com.orange.api.model.Transaction;
 import com.orange.api.model.TransactionType;
 import com.orange.api.service.ReportsService;
-import com.orange.microservices.transaction.persistence.TransactionEntity;
 import com.orange.microservices.transaction.persistence.TransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

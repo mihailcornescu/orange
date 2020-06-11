@@ -1,7 +1,5 @@
 package com.orange.api.model;
 
-import java.util.List;
-
 public class ReportFull {
     private String name;
     private String cnp;

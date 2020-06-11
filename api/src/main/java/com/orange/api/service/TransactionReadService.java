@@ -1,10 +1,11 @@
 package com.orange.api.service;
 
+import com.orange.api.model.Transaction;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.web.bind.annotation.*;
-import com.orange.api.model.Transaction;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 

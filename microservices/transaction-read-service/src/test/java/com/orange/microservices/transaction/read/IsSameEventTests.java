@@ -2,16 +2,13 @@ package com.orange.microservices.transaction.read;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.orange.api.event.Event;
+import com.orange.api.model.Transaction;
 import com.orange.api.model.TransactionType;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import com.orange.api.model.Transaction;
-import com.orange.api.event.Event;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static com.orange.api.event.Event.Type.CREATE;
 import static com.orange.api.event.Event.Type.DELETE;
 

@@ -7,7 +7,8 @@ import com.orange.microservices.transaction.services.TransactionMapper;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class MapperTests {
 
