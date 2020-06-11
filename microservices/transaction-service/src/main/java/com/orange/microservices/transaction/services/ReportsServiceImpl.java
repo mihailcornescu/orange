@@ -14,10 +14,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import se.magnus.api.composite.product.ReviewSummary;
-import se.magnus.api.core.product.Product;
-import se.magnus.api.core.recommendation.Recommendation;
-import se.magnus.api.core.review.Review;
 
 import java.util.List;
 
@@ -77,9 +73,9 @@ public class ReportsServiceImpl implements ReportsService {
         }
         switch (transaction.getType()) {
             case IBAN_TO_IBAN: reportFull.getIbanToIban().setType(TransactionType.IBAN_TO_IBAN); this.buildReportPerType(reportFull.getIbanToIban(), transaction); break;
-            case WALLET_TO_IBAN: reportFull.getIbanToIban().setType(TransactionType.WALLET_TO_IBAN); this.buildReportPerType(reportFull.getWalletToIban(), transaction); break;
-            case IBAN_TO_WALLET: reportFull.getIbanToIban().setType(TransactionType.IBAN_TO_WALLET); this.buildReportPerType(reportFull.getIbanToWallet(), transaction); break;
-            case WALLET_TO_WALLET: reportFull.getIbanToIban().setType(TransactionType.WALLET_TO_WALLET); this.buildReportPerType(reportFull.getWalletToWallet(), transaction); break;
+            case WALLET_TO_IBAN: reportFull.getWalletToIban().setType(TransactionType.WALLET_TO_IBAN); this.buildReportPerType(reportFull.getWalletToIban(), transaction); break;
+            case IBAN_TO_WALLET: reportFull.getIbanToWallet().setType(TransactionType.IBAN_TO_WALLET); this.buildReportPerType(reportFull.getIbanToWallet(), transaction); break;
+            case WALLET_TO_WALLET: reportFull.getWalletToWallet().setType(TransactionType.WALLET_TO_WALLET); this.buildReportPerType(reportFull.getWalletToWallet(), transaction); break;
         }
     }
 

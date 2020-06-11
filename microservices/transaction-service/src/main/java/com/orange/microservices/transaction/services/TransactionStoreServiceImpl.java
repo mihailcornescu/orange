@@ -3,7 +3,6 @@ package com.orange.microservices.transaction.services;
 import com.orange.api.model.Transaction;
 import com.orange.api.service.TransactionStoreService;
 import com.orange.util.exceptions.InvalidInputException;
-import com.orange.util.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,22 +35,10 @@ public class TransactionStoreServiceImpl implements TransactionStoreService {
             .log()
             .onErrorMap(
                 DuplicateKeyException.class,
-                ex -> new InvalidInputException("Duplicate key, Product Id: " + body.getTransactionId()))
+                ex -> new InvalidInputException("Duplicate key, Transaction Id: " + body.getTransactionId()))
             .map(e -> mapper.entityToApi(e));
 
         return newEntity.block();
-    }
-
-    @Override
-    public Mono<Transaction> getTransaction(int transactionId) {
-
-        if (transactionId < 1) throw new InvalidInputException("Invalid productId: " + transactionId);
-
-        return repository.findByTransactionId(transactionId)
-                .switchIfEmpty(error(new NotFoundException("No product found for productId: " + transactionId)))
-                .log()
-                .map(e -> mapper.entityToApi(e));
-
     }
 
 }

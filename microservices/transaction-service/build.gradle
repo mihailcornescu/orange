@@ -41,6 +41,8 @@ dependencies {
 
 	compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	compileOnly("org.springframework.boot:spring-boot-devtools")
+	compile 'org.javassist:javassist:3.18.2-GA' // workaround for ${javassist.version} placeholder issue*
+	compile 'com.github.mongobee:mongobee:0.13'
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 

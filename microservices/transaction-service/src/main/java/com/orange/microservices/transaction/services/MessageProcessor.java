@@ -1,5 +1,6 @@
 package com.orange.microservices.transaction.services;
 
+import com.orange.api.event.Event;
 import com.orange.api.model.Transaction;
 import com.orange.api.service.TransactionStoreService;
 import com.orange.util.exceptions.EventProcessingException;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
-import se.magnus.api.event.Event;
 
 @EnableBinding(Sink.class)
 public class MessageProcessor {

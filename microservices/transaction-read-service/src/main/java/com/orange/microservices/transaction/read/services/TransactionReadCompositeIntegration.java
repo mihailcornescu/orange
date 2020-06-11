@@ -70,11 +70,6 @@ public class TransactionReadCompositeIntegration implements TransactionStoreServ
         return body;
     }
 
-    @Override
-    public Mono<Transaction> getTransaction(int transactionId) {
-        return null;
-    }
-
     public Mono<Health> getTransactionStoreHealth() {
         return getHealth(transactionStoreServiceUrl);
     }

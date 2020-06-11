@@ -1,5 +1,6 @@
 package com.orange.microservices.transaction;
 
+import com.github.mongobee.Mongobee;
 import com.orange.api.model.TransactionType;
 import com.orange.microservices.transaction.persistence.TransactionEntity;
 import com.orange.microservices.transaction.persistence.TransactionRepository;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,32 +23,31 @@ public class TransactionServiceApplication {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TransactionServiceApplication.class);
 
-	static TransactionRepository repository;
-
 	@Autowired
-	TransactionServiceApplication(TransactionRepository repository) {
-		this.repository = repository;
-	}
+	MongoTemplate mongoTemplate;
+
+	static String mongodDbHost;
+	static String mongodDbPort;
+	static String mongodDbDatabase;
 
 	public static void main(String[] args) {
 
 		ConfigurableApplicationContext ctx = SpringApplication.run(TransactionServiceApplication.class, args);
 
-		String mongodDbHost = ctx.getEnvironment().getProperty("spring.data.mongodb.host");
-		String mongodDbPort = ctx.getEnvironment().getProperty("spring.data.mongodb.port");
+		mongodDbHost = ctx.getEnvironment().getProperty("spring.data.mongodb.host");
+		mongodDbPort = ctx.getEnvironment().getProperty("spring.data.mongodb.port");
+		mongodDbDatabase = ctx.getEnvironment().getProperty("spring.data.mongodb.database");
 		LOG.info("Connected to MongoDb: " + mongodDbHost + ":" + mongodDbPort);
-
-		dbSetup();
 	}
 
-	private static void dbSetup() {
-		List<TransactionEntity> transactions = new ArrayList<>();
-		transactions.add(new TransactionEntity(1, TransactionType.IBAN_TO_IBAN, "RO01RNCB00000000123456789", "1801203250054", "ion popescu", "plata chirie", 500));
-		transactions.add(new TransactionEntity(2, TransactionType.IBAN_TO_IBAN, "RO01RNCB00000000123456789", "1801203250054", "ion popescu", "donatie", 150));
-		transactions.add(new TransactionEntity(3, TransactionType.IBAN_TO_IBAN, "RO01RNCB00000000123456789", "1801203250054", "ion popescu", "trimis bani prieten", 200));
-		transactions.add(new TransactionEntity(4, TransactionType.WALLET_TO_IBAN, "RO01RNCB00000000123456789", "1801203250054", "ion popescu", "cumparaturi haine", 300));
-		transactions.add(new TransactionEntity(1, TransactionType.WALLET_TO_IBAN, "RO01RNCB00000000123456789", "1801203250054", "ion popescu", "cumparaturi mancare", 200));
+	@Bean
+	public Mongobee mongobee(){
+		Mongobee runner = new Mongobee("mongodb://localhost:27017/transactions-db");
+		runner.setMongoTemplate(mongoTemplate);
+		runner.setChangeLogsScanPackage(
+				"com.orange.microservices.transactions.changelogs"); // the package to be scanned for changesets
 
-		transactions.forEach(t -> repository.save(t));
+		return runner;
 	}
+
 }
