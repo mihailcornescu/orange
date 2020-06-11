@@ -1,8 +1,8 @@
 # orange
 
-To compile and run the microservices landscape:
+To compile and start the microservices landscape run: 
 
-$ gradew clean build && docker-compose build && docker-compose up
+gradew clean build && docker-compose build && docker-compose up
 
 REST APIs:
 
