@@ -1,8 +1,8 @@
 version: '2.1'
 
 services:
-  transaction-store:
-    build: microservices/transaction-store-service
+  transaction:
+    build: microservices/transaction-service
     mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
@@ -15,8 +15,8 @@ services:
       - kafka
       - mongodb
 
-  transaction-store-p1:
-    build: microservices/transaction-store-service
+  transaction-p1:
+    build: microservices/transaction-service
     mem_limit: 350m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
