@@ -38,7 +38,8 @@ dependencies {
 	implementation('io.springfox:springfox-swagger2:3.0.0-SNAPSHOT')
 	implementation('io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT')
 	implementation('io.springfox:springfox-spring-webflux:3.0.0-SNAPSHOT')
-	
+	implementation('commons-validator:commons-validator:1.6')
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('org.springframework.cloud:spring-cloud-stream-test-support')
 	testImplementation('io.projectreactor:reactor-test')

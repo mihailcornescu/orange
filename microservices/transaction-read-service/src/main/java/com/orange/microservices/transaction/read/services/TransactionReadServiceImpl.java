@@ -2,6 +2,7 @@ package com.orange.microservices.transaction.read.services;
 
 import com.orange.api.model.Transaction;
 import com.orange.api.service.TransactionReadService;
+import com.orange.microservices.transaction.read.validation.TransactionFieldsValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,13 @@ public class TransactionReadServiceImpl implements TransactionReadService {
 
     private final TransactionReadCompositeIntegration integration;
 
+    TransactionFieldsValidationService validationService;
+
     @Autowired
-    public TransactionReadServiceImpl(TransactionReadCompositeIntegration integration) {
+    public TransactionReadServiceImpl(TransactionReadCompositeIntegration integration,
+                                      TransactionFieldsValidationService validationService) {
         this.integration = integration;
+        this.validationService = validationService;
     }
 
     @Override
@@ -25,7 +30,9 @@ public class TransactionReadServiceImpl implements TransactionReadService {
         try {
             LOG.debug("createTransaction: creates a new transaction for transactionId: {}", body.getTransactionId());
 
-            integration.createTransaction(body);
+            if (validationService.areAllTransactionFieldsValid(body)) {
+                integration.createTransaction(body);
+            }
 
             LOG.debug("createTransaction: transaction created for transactionId: {}", body.getTransactionId());
 

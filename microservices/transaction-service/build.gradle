@@ -45,6 +45,8 @@ dependencies {
 	compile 'com.github.mongobee:mongobee:0.13'
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('org.springframework.cloud:spring-cloud-stream-test-support')
